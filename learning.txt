@@ -1,0 +1,30 @@
+interfaces
+ https://code.kx.com/q/interfaces/c-client-for-q/
+ https://code.kx.com/q/interfaces/using-c-functions/
+
+
+learn:
+ https://code.kx.com/q/learn/dicts-tables/ keyed tables vs simple
+
+kb:
+ https://code.kx.com/q/kb/loading-from-large-files/ - gencsv.q large file generator
+
+blog:
+ https://kx.com/blog/kx-product-insights-visualization-for-exploratory-data-analysis-eda/ visualise, Anscombe’s Quartet
+
+read:
+ short: https://code.kx.com/q/basics/parsetrees/
+ long: https://code.kx.com/q/wp/parse-trees/ - how q parser works - concepts
+
+todo:
+ q4m3: namespaces
+ q4m3: i/o, continue reading
+ make .Q parse check (trapping exceptions), because of .Q.fs is broken (use .Q.fsn instead)
+
+read:
+ load
+ .Q.fs
+
+proj:
+ tdiff
+ 9p
