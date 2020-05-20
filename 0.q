@@ -41,12 +41,8 @@ get `:tt
 // https://github.com/KxSystems/cookbook/blob/master/dataloader/gencsv.q
 gen1day:{[date;n] ([]
   sourcetime:`timestamp$date+asc 09:00:00.0 + n?08:00:00.0;
-  inst:n?(1000?`4); //?
-  price:n?100f;
-  size:n?10000;
-  e1:n?20;
-  x:n?(`N`O`L`X);
-  e2:n?10)
+  inst:n?(1000?`4); price:n?100f; size:n?10000;
+  e1:n?20; x:n?(`N`O`L`X); e2:n?10)
  }
 /memory
 show t:gen1day[2020.01.21;5]
@@ -55,9 +51,18 @@ show s:"|" 0: t
 ("psfjjsj";enlist"|") 0: "|" 0: gen1day[2020.01.21;5]
 /disk
 `:t0 0: "|" 0: t
+(0::)`:t0
 ("psfjjsj";enlist"|") 0:  `:t0
 ("psfjjsj";enlist"|") 0: (`:t0 0::)
+("psfjjsj";enlist"|") 0: 0::[`:t0 0: "|" 0: gen1day[2020.01.21;5]]
+("psfjjsj";enlist"|") 0: (0::) `:t0 0: "|" 0: gen1day[2020.01.21;5]
+("psfjjsj";enlist"|") 0: read0 `:t0 0: "|" 0: gen1day[2020.01.21;5]
 hdel `:t0
+
+/memory, strings
+("PSFJJSJ";enlist"|") 0: "|" 0: gen1day[2020.01.01;5]
+/disk, `:t0 file
+("PSFJJSJ";enlist"|") 0: read0 `:t0 0: "|" 0: gen1day[2020.01.01;5]
 
 // ?question about table meta
 // how to read from csv file to renamed columns

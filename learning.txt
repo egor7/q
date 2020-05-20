@@ -1,3 +1,24 @@
+style
+ https://code.kx.com/q/style/indentation/
+ https://code.kx.com/q/style/sam/
+
+idioms=phrases https://github.com/kxcontrib/phrases/blob/master/docs/intro.md
+ https://kx.com/blog/q-idioms/
+ https://code.kx.com/phrases/
+ https://code.kx.com/phrases/wikipage/
+ https://github.com/kxcontrib/phrases/
+ https://github.com/kxcontrib/phrases/blob/master/docs/intro.md
+ https://github.com/kxcontrib/phrases/blob/master/docs/index2.md
+
+basics
+ https://code.kx.com/q/basics/ipc/ [9p]
+
+q4m3
+ https://code.kx.com/q4m3/11_IO/#116-interprocess-communication [9p]
+
+ref
+ https://code.kx.com/q/ref/file-text/
+
 interfaces
  https://code.kx.com/q/interfaces/c-client-for-q/
  https://code.kx.com/q/interfaces/using-c-functions/
@@ -7,14 +28,29 @@ learn:
  https://code.kx.com/q/learn/dicts-tables/ keyed tables vs simple
 
 kb:
+ https://code.kx.com/q/kb/programming-idioms/
  https://code.kx.com/q/kb/loading-from-large-files/ - gencsv.q large file generator
+ https://code.kx.com/q/kb/faq/#how-do-i-replace-null-values-by-something-else ? why so? stackoverflow
 
 blog:
  https://kx.com/blog/kx-product-insights-visualization-for-exploratory-data-analysis-eda/ visualise, Anscombe’s Quartet
+ https://kx.com/blog/kdb-q-insights-scripting-with-q/ hide code with .q_
+  /start script, try/catch block
+  @[main;`;{0N!"Error running main: ",x;exit 1}];
+  //logging
 
 read:
  short: https://code.kx.com/q/basics/parsetrees/
- long: https://code.kx.com/q/wp/parse-trees/ - how q parser works - concepts
+
+wp
+ https://code.kx.com/q/wp/symfiles/#copying-data-between-databases
+ https://code.kx.com/q/wp/parse-trees/ - how q parser works - concepts
+
+timestored
+ http://www.timestored.com/kdb-guides/debugging-kdb
+ http://www.timestored.com/kdb-guides/parallel-peach/ [perf]
+
+===
 
 todo:
  q4m3: namespaces
@@ -24,7 +60,25 @@ todo:
 read:
  load
  .Q.fs
+ .Q.dpft
+ .Q.enxs (??)
+ https://code.kx.com/q/wp/trend-indicators #bitcoin kraken history
+  https://code.kx.com/q/wp/tick-profiling/
+  https://code.kx.com/q/wp/disaster-recovery/
+  https://code.kx.com/q/wp/query-routing/
+  https://www.investopedia.com/articles/technical/102201.asp
+  https://www.investopedia.com/terms/f/force-index.asp
+  https://www.investopedia.com/terms/s/stochasticoscillator.asp
+  https://www.investopedia.com/terms/a/aroonoscillator.asp
+ python, sql
+  https://www.kdnuggets.com/2020/04/python-data-analysis-really-that-simple.html
+ csv into kdb
+  https://code.kx.com/q/kb/faq/#how-do-i-import-a-csv-file-into-a-table
+  https://code.kx.com/q/kb/loading-from-large-files/ [data-loaders]
+ https://code.kx.com/q/kb/odbc/
 
 proj:
  tdiff
- 9p
+ Protocol impl [9p]
+ [perf]
+ .Q.q not worked es expeted
