@@ -9,3 +9,4 @@ trade.amount: 0^trade.amount /not work
 trade[`amount]: 0^trade.amount /work
 
 \l trade.q loads beautiful parse tree - what is it?
+\how to get opened handle name by its int
