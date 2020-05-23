@@ -80,16 +80,20 @@ read:
  ?[`t1;();0b;(`aa`bb)!`a`b]
  +https://code.kx.com/q/basics/iteration/
   +https://code.kx.com/q/ref/iterators/
-   -https://code.kx.com/q/ref/maps/
+   +https://code.kx.com/q/ref/maps/
    +https://code.kx.com/q/ref/accumulators/
   -https://code.kx.com/q/wp/iterators/#higher-ranks ? ssr
  https://code.kx.com/q/kb/load-balancing/
  https://code.kx.com/q/wp/data-management/ 7 scenarios, sql samples, DDL
  https://code.kx.com/q/wp/intraday-writedown/ limited RAM case
- 
+ *https://code.kx.com/q/wp/order-book/ 1st steps example
+ http://www.q-ist.com/2012/10/functional-query-functions.html [qsql]
+ https://code.kx.com/q/kb/partition/#table-counts [qsql]
+
 proj:
  tdiff
  Protocol impl [9p]
  [perf]
  .Q.q not loaded es expected? - see .Q.fs
  grab lurita
+ https://q-shock.blogspot.com/ [q-shock]
