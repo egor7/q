@@ -26,6 +26,7 @@ interfaces
 
 learn:
  https://code.kx.com/q/learn/dicts-tables/ keyed tables vs simple
+ https://code.kx.com/q/learn/startingkdb/tick/ [tick]
 
 kb:
  https://code.kx.com/q/kb/programming-idioms/
@@ -57,13 +58,20 @@ todo:
  q4m3: i/o, continue reading
  make .Q parse check (trapping exceptions), because of .Q.fs is broken (use .Q.fsn instead)
 
+blog:
+ https://qriouskdb.wordpress.com [all]
+ https://qriouskdb.wordpress.com/2020/02/01/digit-representation/
+ https://www.kdbfaq.com/how-can-i-test-for-the-existence-of-a-file-or-directory-in-q/
+
 read:
  load
  .Q.fs
  .Q.dpft
  .Q.enxs (??)
  https://code.kx.com/q/wp/trend-indicators #bitcoin kraken history
-  https://code.kx.com/q/wp/tick-profiling/
+  *https://code.kx.com/q/learn/startingkdb/tick/ [tick]
+  *https://code.kx.com/q/wp/tick-profiling/ [tick]
+  *https://code.kx.com/q/wp/rt-tick/ [tick]
   https://code.kx.com/q/wp/disaster-recovery/
   https://code.kx.com/q/wp/query-routing/
   https://www.investopedia.com/articles/technical/102201.asp
