@@ -63,7 +63,7 @@ value (each') n
 
 parse "count each' n"
 parse "count {x'[y]}' n"
-parse "count each'[n]"
+parse "count each'[n]" /err
 parse "count each' n" /same
 parse "(each')[count;n]" /same
 
@@ -87,3 +87,8 @@ count each''' m
 1
 1
 (1;(1;1;1 1 1))
+
+parse "count each m"
+parse "count each[m]"
+parse "count each''' m"
+parse "count each'''[m]"
