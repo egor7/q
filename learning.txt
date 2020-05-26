@@ -71,11 +71,13 @@ blog:
  https://www.kdbfaq.com/how-can-i-test-for-the-existence-of-a-file-or-directory-in-q/
 
 read:
- *https://code.kx.com/q/kb/programming-idioms/ [ksql] [first]
+ !https://code.kx.com/q/wp/parse-trees/
+ *https://code.kx.com/q/kb/programming-idioms/ [qsql] [first]
  +https://code.kx.com/q/learn/brief-introduction/
  +/-https://qriouskdb.wordpress.com [all]
  +https://code.kx.com/q/learn/startingkdb/tick/ [tick]
   *https://code.kx.com/q/wp/tick-profiling/ [tick]
+  *https://code.kx.com/q/kb/publish-subscribe/ [tick]
   *https://code.kx.com/q/wp/rt-tick/ [tick]
  load
  .Q.fs
@@ -122,3 +124,19 @@ proj:
  .Q.q not loaded es expected? - see .Q.fs
  grab lurita
  https://q-shock.blogspot.com/ [q-shock]
+
+[github]
+ https://code.kx.com/q/github/
+[qsql]
+ https://code.kx.com/q/wp/parse-trees/
+ https://code.kx.com/q/basics/funsql
+  http://www.q-ist.com/2012/10/functional-query-functions.html
+[tick]
+ https://code.kx.com/q/wp/tick-profiling/
+ https://code.kx.com/q/wp/rt-tick/
+[profiling]
+ https://code.kx.com/q/kb/using-dotz/
+[taq]
+ https://legaldocumentation.kx.com/q/d/a/taq.htm 1GB per minute per cpu, 12 Test data >q q/taq/tq.q generate test data
+[datagen]
+ https://code.kx.com/q/learn/brief-introduction/#random-data-generation
