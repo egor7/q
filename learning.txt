@@ -71,6 +71,7 @@ blog:
  https://www.kdbfaq.com/how-can-i-test-for-the-existence-of-a-file-or-directory-in-q/
 
 read:
+ *https://code.kx.com/q/kb/programming-idioms/ [ksql] [first]
  +https://code.kx.com/q/learn/brief-introduction/
  +/-https://qriouskdb.wordpress.com [all]
  +https://code.kx.com/q/learn/startingkdb/tick/ [tick]
@@ -110,7 +111,10 @@ read:
   https://code.kx.com/q/ref/in/
   https://code.kx.com/q/ref/bin/
  https://legaldocumentation.kx.com/q/d/primer.htm
- 
+
+read adv:
+ https://code.kx.com/q/learn/brief-introduction/#random-data-generation
+
 proj:
  tdiff
  Protocol impl [9p]
