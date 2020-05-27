@@ -14,15 +14,59 @@ t
 
 select a,b,c,idx:i from t where i within 2 4
 
-time:.z.t
-7h$time mod 1000
-time
-
+/get the hourly lowest and highest price
 n:1000
 stocks:`goog`amzn`msft`intel`amd`ibm
 trade:([]stock:n?stocks; price:n?100.0;amount:100*10+n?20;time:n?24:00:00.000)
-
-/get the hourly lowest and highest price
-select low:min price,high:max price by stock, time.hh from trade
+select low:min price,high:max price by stock,hour:time.hh from trade
 
 /extract the time of the lowest and highest prices?
+n:3000
+t:`time xasc ([] time:09:30:00.0+n?23000000; sym:n?`AAPL`GOOG`IBM; price:50+(floor (n?0.99)*100)%100)
+t
+meta t
+f:{select high:max price,
+ low:min price,
+ c:count where price=max price,
+ time_high0:first time where price=max price,
+ time_high9:last time where price=max price
+ by sym,time.hh from x}
+f[t]
+
+/extract regular time series from observed quotes
+n:300
+t:`time xasc ([] time:09:30:00.0+n?23000000; sym:n?`AAPL`GOOG`IBM; bid:50+(floor (n?0.99)*100)%100; ask:51+(floor (n?0.99)*100)%100);
+`minute xasc select last bid, last ask by sym,1 xbar time.minute from t
+
+/https://code.kx.com/q/ref/xbar/
+t:([]time:`s#10:00:00+asc 10?3600)
+x:`s#10:00+00:00 00:08 00:13 00:27 00:30 00:36 00:39 00:50
+select count i by 10 xbar time.minute from t
+select time by x x bin time.minute from t
+
+/better solution would be to use aj
+/TODO:fby https://code.kx.com/q4m3/9_Queries_q-sql/#9134-meaty-queries
+n:300
+t:`time xasc([]time:09:30:00.0+n?23000000;sym:n?`AAPL`GOOG`IBM;bid:50+(floor (n?0.99)*100)%100;ask:51+(floor (n?0.99)*100)%100)
+select time,sym,bid,ask from t
+select `second$time,sym,bid,ask from t
+
+v:{$[-11h=@x;.$[":"=*t:$x;`$t,"/";x];x]};
+.Q.v
+.Q.ft:{
+ $[
+  $[99h=@t:v y;
+   98h=@. t;
+   0];
+  [n:#+!y;n!x 0!y];
+  x y
+  ]
+ };
+res: aj[
+ `sym`time;
+ ([]sym:`AAPL`IBM`GOOG)
+ cross
+ ([]time:09:30:00+til `int$(16:00:00 - 09:30:00));
+ select `second$time,sym,bid,ask from t
+ ]
+t

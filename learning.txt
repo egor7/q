@@ -104,7 +104,7 @@ read:
    +https://code.kx.com/q/ref/accumulators/
   -https://code.kx.com/q/wp/iterators/#higher-ranks ? ssr
  https://code.kx.com/q/kb/load-balancing/
- https://code.kx.com/q/wp/data-management/ 7 scenarios, sql samples, DDL
+ https://code.kx.com/q/wp/data-management/ 7 scenarios, sql samples, DDL [qsql] [taq]
  https://code.kx.com/q/wp/intraday-writedown/ limited RAM case
  *https://code.kx.com/q/wp/order-book/ 1st steps example
  http://www.q-ist.com/2012/10/functional-query-functions.html [qsql]
@@ -114,8 +114,13 @@ read:
   https://code.kx.com/q/ref/bin/
  https://legaldocumentation.kx.com/q/d/primer.htm
 
-read adv:
+adv:
  https://code.kx.com/q/learn/brief-introduction/#random-data-generation
+ meta
+  .Q.fk
+  .Q.V
+   .Q.qp - after partitioning and playing tables
+   https://code.kx.com/q/ref/dotq/#qqp-is-partitioned
 
 proj:
  tdiff
@@ -131,12 +136,19 @@ proj:
  https://code.kx.com/q/wp/parse-trees/
  https://code.kx.com/q/basics/funsql
   http://www.q-ist.com/2012/10/functional-query-functions.html
+ https://code.kx.com/q/ref/dotq/#qen-enumerate-varchar-cols
+  https://code.kx.com/q/kb/splaying-large-files/#enumerating-using-qen
+  !https://code.kx.com/q/wp/data-management/#multiple-enumeration-files [taq]
+  https://code.kx.com/q/wp/symfiles/#qen [sym]
+  https://code.kx.com/q/kb/splayed-tables/#enumerating-varchar-columns-in-a-table [spla]
+  https://code.kx.com/q/ref/flip-splayed/ [spla]
 [tick]
  https://code.kx.com/q/wp/tick-profiling/
  https://code.kx.com/q/wp/rt-tick/
 [profiling]
  https://code.kx.com/q/kb/using-dotz/
 [taq]
+ https://code.kx.com/q/wp/data-management/#multiple-enumeration-files
  https://legaldocumentation.kx.com/q/d/a/taq.htm 1GB per minute per cpu, 12 Test data >q q/taq/tq.q generate test data
 [datagen]
  https://code.kx.com/q/learn/brief-introduction/#random-data-generation
