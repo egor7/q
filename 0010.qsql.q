@@ -70,3 +70,37 @@ res: aj[
  select `second$time,sym,bid,ask from t
  ]
 t
+
+([]c1:1 2)
+cross
+1 2 3 cross `a`b
+
+/cross
+x:1 2 3
+y:`a`b
+k)#x /3
+k)#y /2
+k)(#x)##y /2 2 2
+k)m:&(#x)##y /0 0 1 1 2 2
+k)n:#m:&(#x)##y /6
+x[m] / 1 1 2 2 3 3
+n#y  /`a`b`a`b`a`b
+(x[m],'n#y)~x cross y /1b
+
+x:([]sym:`IBM`GOOG)
+y:([]time:09:30:00+til 3)
+k)m:&(#x)##y
+k)n:#m
+(x cross y)~x[m],'n#y /1b
+(x cross y)~raze x,/:\:y
+
+x:`a`b`c!10 20 30
+y:`x`y!100 200
+cross
+k)m:&(#x)##y
+k)n:#m
+k)((!x)[m],'n#!y)
+k)(. x)[m],'n#. y
+raze x,/:\:y
+z:x cross y
+z[`a`x]
