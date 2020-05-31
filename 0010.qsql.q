@@ -44,7 +44,7 @@ x:`s#10:00+00:00 00:08 00:13 00:27 00:30 00:36 00:39 00:50
 select count i by 10 xbar time.minute from t
 select time by x x bin time.minute from t
 
-/better solution would be to use aj
+/better solution would be to use aj (*)
 /TODO:fby https://code.kx.com/q4m3/9_Queries_q-sql/#9134-meaty-queries
 n:300
 t:`time xasc([]time:09:30:00.0+n?23000000;sym:n?`AAPL`GOOG`IBM;bid:50+(floor (n?0.99)*100)%100;ask:51+(floor (n?0.99)*100)%100)
@@ -104,3 +104,55 @@ k)(. x)[m],'n#. y
 raze x,/:\:y
 z:x cross y
 z[`a`x]
+
+/(*)
+/aj:{.Q.ft[.Q.ajf0[0;1;x;;z]]y}
+n:300;
+t:`time xasc([]time:09:30:00.0+n?23000000;sym:n?`AAPL`GOOG`IBM;bid:50+(floor (n?0.99)*100)%100;ask:51+(floor (n?0.99)*100)%100)
+t:select `minute$time,sym,bid,ask from t
+ts:([]sym:`AAPL`IBM`GOOG) cross ([]time:09:30+til `int$(16:00 - 09:30))
+`time xasc aj[`sym`time;ts;t]
+/in case of nonkeyed t it would be same as:
+`time xasc .Q.ajf0[0;1;`sym`time;ts;t]
+
+/ .Q.ft
+t1:`n xasc flip`n`sym`time`prise`size!5?'(100,`3,.z.t,100f,10000)
+t2:1!t1
+.Q.ft[{x 0 1};t1]
+.Q.ft[{x 0 1};t2]
+/ .Q.ajf0
+{[f;g;x;y;z]
+ / x:symbols set, list
+ / y:target table we apply function to
+ / z:what we use to create application function, non-keyed
+ d:x_z; /d:z without x columns
+ $[&/j:-1<i:(x#z)bin x#y;
+  ,'[y;d i];
+  +.[+.Q.ff[y]d; (!+d;j); :; .+d i j:&j]
+  ]
+ }
+
+(`n`m1`m2!1 10 100) , (+(,`n)!,1 20)!+`v1`v2!(11 21;101 201)
+(`n`m1`m2!2 20 200) , (+(,`n)!,1 20)!+`v1`v2!(11 21;101 201)
+ `n`m1`m2`v1`v2!1 10 100 11 101
+ `n`m1`m2`v1`v2!2 20 200 0N 0N
+ttt0
+k)+`n`v1`v2!(1 20;11 21;101 201) /same as
+(`n`v1`v2!1 11 101; `n`v1`v2!20 21 201)
+ttt1
+k)(+(,`n)!,1 20)!+`v1`v2!(11 21;101 201) /same as
+((enlist`n)!(),1; (enlist`n)!(),20)!(`v1`v2!11 101; `v1`v2!21 201)
+
+/ keyed table is a dictionary
+show d:(`n`m!`a`b;`n`m!`x`y)!(`c1`c2!10 20;`c1`c2!100 200)
+/ take by key
+(`n`m!`a`b;`n`m!`a`b)#d /with keys
+d(`n`m!`a`b;`n`m!`a`b)  /without keys
+
+d:(`n`v1`v2!1 11 101; `n`v1`v2!20 21 201)
+`v1`v2`v3#/:d /ok to get nonexist col line by line
+`v1`v2`v3#d /err
+(flip d)[`v1]~d[`v1]
+
+(flip t1:`c1`c2!(1 2;10 20))~t2:(`c1`c2!(1 10);`c1`c2!(2 20))
+t1[`c1]~t2[`c1]

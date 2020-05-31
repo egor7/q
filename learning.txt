@@ -90,6 +90,8 @@ read:
   https://www.investopedia.com/terms/f/force-index.asp
   https://www.investopedia.com/terms/s/stochasticoscillator.asp
   https://www.investopedia.com/terms/a/aroonoscillator.asp
+ style
+  https://code.kx.com/q/style/
  python, sql
   https://www.kdnuggets.com/2020/04/python-data-analysis-really-that-simple.html
  csv into kdb
