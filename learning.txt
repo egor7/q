@@ -154,3 +154,8 @@ proj:
  https://legaldocumentation.kx.com/q/d/a/taq.htm 1GB per minute per cpu, 12 Test data >q q/taq/tq.q generate test data
 [datagen]
  https://code.kx.com/q/learn/brief-introduction/#random-data-generation
+[platform]
+ https://code.kx.com/platform/stream/
+ https://code.kx.com/platform/user_interface/
+[my god!]
+ https://code.kx.com/phrases/shape/ appending rows to matrix

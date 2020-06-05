@@ -106,7 +106,6 @@ z:x cross y
 z[`a`x]
 
 /(*)
-/aj:{.Q.ft[.Q.ajf0[0;1;x;;z]]y}
 n:300;
 t:`time xasc([]time:09:30:00.0+n?23000000;sym:n?`AAPL`GOOG`IBM;bid:50+(floor (n?0.99)*100)%100;ask:51+(floor (n?0.99)*100)%100)
 t:select `minute$time,sym,bid,ask from t
@@ -115,6 +114,7 @@ ts:([]sym:`AAPL`IBM`GOOG) cross ([]time:09:30+til `int$(16:00 - 09:30))
 /in case of nonkeyed t it would be same as:
 `time xasc .Q.ajf0[0;1;`sym`time;ts;t]
 
+/ aj:{.Q.ft[.Q.ajf0[0;1;x;;z]]y}
 / .Q.ft
 t1:`n xasc flip`n`sym`time`prise`size!5?'(100,`3,.z.t,100f,10000)
 t2:1!t1
@@ -125,7 +125,7 @@ t2:1!t1
  / x:symbols set, list
  / y:target table we apply function to
  / z:what we use to create application function, non-keyed
- d:x_z; /d:z without x columns
+ d:x_z;
  $[&/j:-1<i:(x#z)bin x#y;
   ,'[y;d i];
   +.[+.Q.ff[y]d; (!+d;j); :; .+d i j:&j]
