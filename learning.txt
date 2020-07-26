@@ -40,7 +40,13 @@ kb:
  https://code.kx.com/q/kb/loading-from-large-files/ - gencsv.q large file generator
  https://code.kx.com/q/kb/faq/#how-do-i-replace-null-values-by-something-else ? why so? stackoverflow
 
+book:
+ml:
+ https://books.google.ru/books?id=5RuzDwAAQBAJ
+
 blog:
+ https://thinqkdb.wordpress.com/ !
+ https://www.aquaq.co.uk/datablog/kdb-anymap-unstructured/
  https://kx.com/blog/kx-product-insights-visualization-for-exploratory-data-analysis-eda/ visualise, Anscombe’s Quartet
  https://kx.com/blog/kdb-q-insights-scripting-with-q/ hide code with .q_
   /start script, try/catch block

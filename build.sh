@@ -4,4 +4,5 @@
 #echo $d
 #~/q/m32/q ls_grep.q -q -path "." -like "*.q"
 #~/q/m32/q visitor.q
-~/q/m32/q qfind.q
+#~/q/m32/q qfind.q
+echo nop
