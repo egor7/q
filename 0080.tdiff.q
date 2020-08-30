@@ -18,34 +18,21 @@ show t2:([s:`s2`s3`s4`s5;k:`k2`k3A`k4`k5]
  status:25 0N 45 50;
  city:`paris`paris`londonB`athens);
 
-k: keys t2;
-v: (cols t2) where not (cols t2) in k
-v1: `$"t1_",/:string v
-v2: `$"t2_",/:string v
-ids: distinct ?[t1;();0b;k!k],?[t2;();0b;k!k]
-uni: ?[ids lj t1;();0b;(k,v1)!k,v]
-uni: ?[uni lj t2;();0b;(k,v1,v2)!k,v1,v]
-
-uni
-select from uni where t1_name <> t2_name
-select from uni where t1_city <> t2_city
-select from uni where t1_status <> t2_status
-?[uni;enlist((';~:;=);`t1_name;`t2_name);0b;(k,`field,`t1_val,`t2_val)!(k,(enlist enlist`name),`t1_name,`t2_name)]
-?[uni;enlist((';~:;=);`t1_city;`t2_city);0b;(k,`field,`t1_val,`t2_val)!(k,(enlist enlist`city),`t1_city,`t2_city)]
-
-{[col]
-    t1_col: `$"t1_",string col;
-    t2_col: `$"t2_",string col;
+tKeys: keys t2;
+tCols: (cols t2) where not (cols t2) in tKeys;
+t1Cols: `$"t1_",/:string tCols;
+t2Cols: `$"t2_",/:string tCols;
+ids: distinct ?[t1;();0b;tKeys!tKeys],?[t2;();0b;tKeys!tKeys];
+uni: ?[ids lj t1;();0b;(tKeys,t1Cols)!tKeys,tCols];
+uni: ?[uni lj t2;();0b;(tKeys,t1Cols,t2Cols)!tKeys,t1Cols,tCols];
+dif: (,/){[col]
+    t1Col: `$"t1_",string col;
+    t2Col: `$"t2_",string col;
     ?[uni;
-      enlist((';~:;=);t1_col;t2_col);
+      enlist((';~:;=);t1Col;t2Col);
       0b;
-      (k,`n,`field,`t1_val,`t2_val)!(k,(v?col),(enlist enlist col),t1_col,t2_col)]
- }`status
-
-dif:0#enlist(k,`n,`field,`t1_val,`t2_val)!(4+count[k])#();
-dif
-over
-NULL AS FIELD, 'NULL' AS T1_VAL, 'NULL' AS T2_VAL FROM DUAL
+      (tKeys,`n,`field,`t1_val,`t2_val)!(tKeys,(tCols?col),(enlist enlist col),t1Col,t2Col)]
+ }@/:tCols
 
 //////
 DIF AS
