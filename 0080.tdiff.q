@@ -35,13 +35,9 @@ dif: (,/){[col]
       (tKeys,`n,`field,`t1val,`t2val)!(tKeys,(tCols?col),(enlist enlist col),t1Col,t2Col)]
  }@/:tCols
 
+`s`k`n xasc select s,k,n,field,t1val,t2val,rn:rank([]s;k),f:(rank;([]s;k)) fby ([]s;k) from dif
 ?[dif; (); 0b; (tKeys,`n,`field,`t1val,`t2val)!tKeys,`n,`field,`t1val,`t2val]
 
-`s`k`n xasc select s,k,n,field,t1val,t2val,rn:(rank;([]s;k)) fby ([]s;k) from dif
-`s`k`n xasc select s,k,n,field,t1val,t2val,rn:rank([]s;k) from dif
-
-`s`k xasc dif
-rank dif
 //////
 DIF AS
 SELECT LOAN_ID, ACC_ID,
