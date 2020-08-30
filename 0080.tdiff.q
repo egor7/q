@@ -35,8 +35,34 @@ dif: (,/){[col]
       (tKeys,`n,`field,`t1val,`t2val)!(tKeys,(tCols?col),(enlist enlist col),t1Col,t2Col)]
  }@/:tCols
 
+select s,k,n,field,t1val,t2val,rn:rank([]s;k),f:(rank;([]s;k)) fby ([]s;k) from dif
 `s`k`n xasc select s,k,n,field,t1val,t2val,rn:rank([]s;k),f:(rank;([]s;k)) fby ([]s;k) from dif
-?[dif; (); 0b; (tKeys,`n,`field,`t1val,`t2val)!tKeys,`n,`field,`t1val,`t2val]
+            select s,k,n,field,t1val,t2val,rn:rank([]s;k),f:(rank;([]s;k)) fby ([]s;k) from dif
+`s`k`n xasc ?[dif; (); 0b; (tKeys,`n,`field,`t1val,`t2val,`rn)!tKeys,`n,`field,`t1val,`t2val,enlist(rank;(flip;(!;enlist`s`k;(enlist;`s;`k))))]
+`s`k`n xasc ?[dif; (); 0b; (tKeys,`n,`field,`t1val,`t2val,`rn)!tKeys,`n,`field,`t1val,`t2val,enlist(rank;(flip;(!;enlist tKeys;(enlist;`s;`k))))]
+`s`k`n xasc ?[dif; (); 0b; (tKeys,`n,`field,`t1val,`t2val,`rn)!tKeys,`n,`field,`t1val,`t2val,enlist(rank;(flip;(!;enlist tKeys;(enlist;`s;`k))))]
+/ (parse    "([]s;k)")~      (flip;(!;enlist`s`k;(enlist;`s;`k)))
+/ (parse"rank([]s;k)")~(rank;(flip;(!;enlist`s`k;(enlist;`s;`k))))
+(!;enlist`s`k;(enlist;`s;`k))
+(!;enlist tKeys;(enlist;`s;`k))
+(!;enlist tKeys;(enlist;tKeys))
+/ >>>
+tKeys
+enlist(`s;`k)
+enlist[tKeys]
+
+parse"select s,k,n,field,t1val,t2val,rn:rank([]s;k) from dif"
+parse"select s,k,n,field,t1val,t2val,count([]s;k) from dif"
+k){$[0h>@x;'`rank;<<x]}; (+:;(!;,`s`k;(enlist;`s;`k)))
+                    (#:;  (+:;(!;,`s`k;(enlist;`s;`k))))
+eval (+:;(!;,`s`k;(enlist;`s;`k)))
+//  select sum x by y from t where x<>1
+//  ?[t;c"x<>1";b"y";a"sum x"]
+//  select from t2 where i=(last;i)fby([]y;k)
+//  ?[t2;enlist fbyx["i=(last;i)";`y`k];0b;()]
+// 
+//  c"t1_name <> t2_name"
+
 
 //////
 DIF AS
