@@ -20,20 +20,28 @@ show t2:([s:`s2`s3`s4`s5;k:`k2`k3A`k4`k5]
 
 tKeys: keys t2;
 tCols: (cols t2) where not (cols t2) in tKeys;
-t1Cols: `$"t1_",/:string tCols;
-t2Cols: `$"t2_",/:string tCols;
+t1Cols: `$"t1",/:string tCols;
+t2Cols: `$"t2",/:string tCols;
+
 ids: distinct ?[t1;();0b;tKeys!tKeys],?[t2;();0b;tKeys!tKeys];
 uni: ?[ids lj t1;();0b;(tKeys,t1Cols)!tKeys,tCols];
 uni: ?[uni lj t2;();0b;(tKeys,t1Cols,t2Cols)!tKeys,t1Cols,tCols];
 dif: (,/){[col]
-    t1Col: `$"t1_",string col;
-    t2Col: `$"t2_",string col;
+    t1Col: `$"t1",string col;
+    t2Col: `$"t2",string col;
     ?[uni;
       enlist((';~:;=);t1Col;t2Col);
       0b;
-      (tKeys,`n,`field,`t1_val,`t2_val)!(tKeys,(tCols?col),(enlist enlist col),t1Col,t2Col)]
+      (tKeys,`n,`field,`t1val,`t2val)!(tKeys,(tCols?col),(enlist enlist col),t1Col,t2Col)]
  }@/:tCols
 
+?[dif; (); 0b; (tKeys,`n,`field,`t1val,`t2val)!tKeys,`n,`field,`t1val,`t2val]
+
+`s`k`n xasc select s,k,n,field,t1val,t2val,rn:(rank;([]s;k)) fby ([]s;k) from dif
+`s`k`n xasc select s,k,n,field,t1val,t2val,rn:rank([]s;k) from dif
+
+`s`k xasc dif
+rank dif
 //////
 DIF AS
 SELECT LOAN_ID, ACC_ID,
@@ -46,6 +54,8 @@ FROM (SELECT           LOAN_ID, ACC_ID, N, FIELD,        T1_VAL,          T2_VAL
       UNION ALL SELECT LOAN_ID, ACC_ID, 2, 'ID',         "t1_ID",         "t2_ID"         FROM UNI WHERE NVL(t1_ID, -123456) <> NVL(t2_ID, -123456)
       UNION ALL SELECT LOAN_ID, ACC_ID, 3, 'REPORTDATE', "t1_REPORTDATE", "t2_REPORTDATE" FROM UNI WHERE NVL(t1_REPORTDATE, TO_DATE('01.01.1945','DD.MM.YYYY')) <> NVL(t2_REPORTDATE, TO_DATE('01.01.1945','DD.MM.YYYY'))
 
+...
+ORDER BY d.LOAN_ID, d.ACC_ID, N
 
 /
 CREATE OR REPLACE
