@@ -1,7 +1,13 @@
-\l sp.q
-s
-p
-sp
+// c:{parse["select from t",$[count x;" where ",x;""]]. 2 0}
+// b:{parse["select",$[count x;" by ",x;""]," from t"]3}
+// a:{parse["select ",x," from t"]4}
+// fbyx:{.[parse["select from t where ",x,"fby c"]. 2 0 0;2 2;:;(flip;(!;enlist(),y;(enlist,y)))]}
+//  select sum x by y from t where x<>1
+//  ?[t;c"x<>1";b"y";a"sum x"]
+//  select from t2 where i=(last;i)fby([]y;k)
+//  ?[t2;enlist fbyx["i=(last;i)";`y`k];0b;()]
+// 
+//  c"t1_name <> t2_name"
 
 show t1:([s:`s1`s2`s3A`s4;k:`k1`k2`k3`k4]
  name: `smith``blake`clark;
@@ -14,8 +20,8 @@ show t2:([s:`s2`s3`s4`s5;k:`k2`k3A`k4`k5]
 
 k: keys t2;
 v: (cols t2) where not (cols t2) in k
-v1: `$"t1_",/:($)v
-v2: `$"t2_",/:($)v
+v1: `$"t1_",/:string v
+v2: `$"t2_",/:string v
 ids: distinct ?[t1;();0b;k!k],?[t2;();0b;k!k]
 uni: ?[ids lj t1;();0b;(k,v1)!k,v]
 uni: ?[uni lj t2;();0b;(k,v1,v2)!k,v1,v]
@@ -24,6 +30,22 @@ uni
 select from uni where t1_name <> t2_name
 select from uni where t1_city <> t2_city
 select from uni where t1_status <> t2_status
+?[uni;enlist((';~:;=);`t1_name;`t2_name);0b;(k,`field,`t1_val,`t2_val)!(k,(enlist enlist`name),`t1_name,`t2_name)]
+?[uni;enlist((';~:;=);`t1_city;`t2_city);0b;(k,`field,`t1_val,`t2_val)!(k,(enlist enlist`city),`t1_city,`t2_city)]
+
+{[col]
+    t1_col: `$"t1_",string col;
+    t2_col: `$"t2_",string col;
+    ?[uni;
+      enlist((';~:;=);t1_col;t2_col);
+      0b;
+      (k,`n,`field,`t1_val,`t2_val)!(k,(v?col),(enlist enlist col),t1_col,t2_col)]
+ }`status
+
+dif:0#enlist(k,`n,`field,`t1_val,`t2_val)!(4+count[k])#();
+dif
+over
+NULL AS FIELD, 'NULL' AS T1_VAL, 'NULL' AS T2_VAL FROM DUAL
 
 //////
 DIF AS
